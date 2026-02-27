@@ -62,6 +62,16 @@
 
 ## 学习资源
 
+### 什么是 MCP？
+
+> **MCP (Model Context Protocol)** 是一个开放协议，让 Claude 能够与外部工具和数据源交互。
+>
+> **简单理解**：
+> - **没有 MCP**：Claude 只能处理你输入的文字
+> - **有 MCP**：Claude 可以读取文件、搜索数据库、执行命令...
+>
+> **示例**：配置一个 MCP 文件系统服务器，Claude 就能直接读取你的代码文件。
+
 ### 官方文档
 - [Claude Code 官方文档](https://github.com/anthropics/claude-code)
 - [Claude Code 官方指南](https://claude.ai/claude-code)

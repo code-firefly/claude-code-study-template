@@ -4,6 +4,23 @@
 
 ---
 
+## ⚠️ 前置知识
+
+在开始迁移前，确保你了解以下 Git 概念：
+
+| 概念 | 含义 | 示例 |
+|------|------|------|
+| **upstream** | 官方主仓库 | `git fetch upstream` = 从官方仓库获取更新 |
+| **origin** | 你的个人仓库 | `git push origin main` = 推送到你的仓库 |
+| **HEAD** | 当前所在的提交 | `HEAD~1` = 上一个提交 |
+| **--ours** | 保留"当前分支"的版本 | 合并冲突时，保留你的修改 |
+| **--theirs** | 保留"要合并的分支"版本 | 合并冲突时，采用上游的修改 |
+| **--hard** | 强制重置，丢弃未提交的修改 | ⚠️ 危险操作，会丢失数据 |
+
+> 不熟悉这些概念？先阅读 [TEAM_GUIDE.md](./TEAM_GUIDE.md#-理解远程仓库origin-vs-upstream)
+
+---
+
 ## 🔍 版本检测
 
 ### 检查当前版本
@@ -168,11 +185,11 @@ git status  # 不应该显示个人数据文件
 
 ```bash
 # 示例：解决 PROGRESS.md 冲突
-git checkout --ours PROGRESS.md  # 保留你的版本
+git checkout --ours PROGRESS.md   # 保留你的版本（本地优先）
 git add PROGRESS.md
 
 # 示例：解决 CLAUDE.md 冲突
-git checkout --theirs CLAUDE.md  # 保留上游版本
+git checkout --theirs CLAUDE.md   # 保留上游版本（系统更新）
 git add CLAUDE.md
 ```
 

@@ -33,6 +33,92 @@ bash scripts/init.sh
 - 验证 .gitignore 配置
 - 显示下一步指导
 
+```bash
+# 验证 upstream 配置（可选）
+git remote -v | grep upstream
+```
+
+---
+
+## 🌐 理解远程仓库：origin vs upstream
+
+### 什么是远程仓库？
+
+在 Git 中，**远程仓库（remote）** 是托管在互联网或其他网络上的 Git 仓库。你可以有多个远程仓库，每个都有一个名称（别名）。
+
+### Fork 工作流中的两个远程仓库
+
+当你 Fork 一个仓库后，会存在**两个仓库**：
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                      主仓库 (upstream)                      │
+│         https://github.com/GreadXu/claude-code-study        │
+│                    （官方源码仓库）                          │
+│                    ↓ 你 Fork 了它                            │
+└─────────────────────────────────────────────────────────────┘
+                          ↓
+┌─────────────────────────────────────────────────────────────┐
+│                  你的仓库 (origin)                          │
+│       https://github.com/YOUR_USERNAME/claude-code-study    │
+│                    （你拥有控制权）                          │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### origin 与 upstream 的区别
+
+| 特性 | **origin** | **upstream** |
+|------|-----------|--------------|
+| **是什么** | 你 Fork 后的**个人仓库** | 原始的**主仓库** |
+| **所有权** | 你（完全控制） | 项目维护者 |
+| **用途** | 你向这里推送代码 | 从这里获取官方更新 |
+| **可写入** | ✅ 是 | ❌ 否（只能 PR） |
+| **自动配置** | ✅ clone 时自动添加 | ❌ 需要手动添加 |
+
+### Git 命令对照
+
+```bash
+# 查看所有远程仓库
+git remote -v
+
+# 输出示例：
+# origin    https://github.com/YOUR_USERNAME/claude-code-study.git (fetch)
+# origin    https://github.com/YOUR_USERNAME/claude-code-study.git (push)
+# upstream  https://github.com/GreadXu/claude-code-study.git (fetch)
+# upstream  https://github.com/GreadXu/claude-code-study.git (push)
+
+# 从 origin 获取（你自己的仓库）
+git fetch origin
+
+# 从 upstream 获取（主仓库的更新）
+git fetch upstream
+
+# 推送到 origin（你自己的仓库）
+git push origin main
+
+# 不能直接推送到 upstream（无权限）
+# git push upstream main  ❌ 会报错
+```
+
+### 数据流向
+
+```
+                    获取更新
+upstream ─────────────────────> 你的本地
+  ▲                              │
+  │                              │ 推送
+  │                              │
+  │                              ▼
+  └────────── Pull Request ──── origin
+     (贡献改进给主仓库)
+```
+
+### 记忆技巧
+
+> **origin** = **出发点** = 你自己的仓库，你的地盘你做主
+>
+> **upstream** = **上游源头** = 河流的源头，官方仓库的更新来源
+
 ---
 
 ## 🔄 同步上游更新
@@ -62,7 +148,7 @@ bash scripts/sync.sh
 ### 手动同步（高级）
 
 ```bash
-# 1. 获取上游更新
+# 1. 获取上游更新（upstream = 主仓库）
 git fetch upstream
 
 # 2. 切换到主分支
@@ -76,7 +162,7 @@ git merge upstream/main
 git add .
 git commit -m "Merge upstream updates"
 
-# 5. 推送到你的仓库
+# 5. 推送到你的仓库（origin = 你的仓库）
 git push origin main
 ```
 
