@@ -118,15 +118,13 @@ create_backup() {
     fi
 
     # 备份模块清单和笔记
-    while IFS= read -r -d '' file; do
-        # 跳过模板目录
-        if [[ "$file" == *".templates"* ]]; then
-            continue
-        fi
-        # 跳过现有备份目录
-        if [[ "$file" == *".backups"* ]]; then
-            continue
-        fi
+    # 使用更兼容的方式处理 find 输出
+    local temp_list=$(mktemp)
+    find . -name "checklist.md" -not -path "*/.templates/*" -not -path "*/.backups/*" > "$temp_list" 2>/dev/null
+    find . -name "notes.md" -not -path "*/.templates/*" -not -path "*/.backups/*" >> "$temp_list" 2>/dev/null
+
+    while IFS= read -r file; do
+        [ -z "$file" ] && continue
 
         # 创建目标目录结构
         local target_dir="$backup_dir/$(dirname "$file")"
@@ -137,25 +135,24 @@ create_backup() {
         echo "$file ($size bytes)" >> "$manifest"
         total_size=$((total_size + size))
         file_count=$((file_count + 1))
-    done < <(find . -name "checklist.md" -print0 -o -name "notes.md" -print0 2>/dev/null)
+        print_success "已备份: $file"
+    done < "$temp_list"
+    rm -f "$temp_list"
 
     # 备份知识缓存（如果存在）
-    while IFS= read -r -d '' dir; do
-        # 跳过模板目录
-        if [[ "$dir" == *".templates"* ]]; then
-            continue
-        fi
-        # 跳过现有备份目录
-        if [[ "$dir" == *".backups"* ]]; then
-            continue
-        fi
+    local temp_dirs=$(mktemp)
+    find . -type d -name "knowledge" -not -path "*/.templates/*" -not -path "*/.backups/*" > "$temp_dirs" 2>/dev/null
+
+    while IFS= read -r dir; do
+        [ -z "$dir" ] && continue
 
         local target_dir="$backup_dir/$(dirname "$dir")"
         mkdir -p "$target_dir"
         cp -r "$dir" "$target_dir/"
 
         print_success "已备份: $dir"
-    done < <(find . -type d -name "knowledge" -print0 2>/dev/null)
+    done < "$temp_dirs"
+    rm -f "$temp_dirs"
 
     # 添加摘要到清单
     echo "" >> "$manifest"
