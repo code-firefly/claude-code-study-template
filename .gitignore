@@ -31,6 +31,9 @@ LEARNING_BOOKMARKS.md
 .claude/KNOWLEDGE_CACHE.md
 .claude/settings.local.json
 
+# 个人学习笔记（不分享给团队）
+personal-notes/
+
 # 备份文件
 *.backup
 *.bak
