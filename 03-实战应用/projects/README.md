@@ -34,6 +34,39 @@
 - **本地 LLM + 云端 API**的混合方案
 - **多个 MCP 服务器**的集成配置
 
+#### 推荐项目：飞书学习助手
+
+如果你想快速开始一个实战项目，可以考虑**飞书学习助手**（见 `feishu-learning-assistant/` 目录）：
+
+**项目概述**：
+- 通过飞书机器人控制 Claude Code 执行学习任务
+- 展示 OpenClaw + Claude Code + 飞书的完整集成
+- 类型：AI 能力集成项目
+- 难度：⭐⭐⭐⭐ 高级
+- 时长：1-2 周
+
+**前置要求**：
+- 完成 `openclaw-ecosystem` 模块
+- 已配置飞书机器人
+
+**技术栈**：
+- 飞书机器人（用户界面）
+- OpenClaw（指令编排，WSL 2）
+- Claude Code CLI（命令执行，Windows）
+- 学习项目文件系统（Markdown）
+
+**功能特性**：
+- 飞书消息接收与解析
+- 学习命令调度（开始学习、更新进度、查看状态）
+- Claude Code CLI 调用桥接
+- 学习结果格式化返回
+
+**参考文档**：
+- `feishu-learning-assistant/README.md` - 项目说明
+- `feishu-learning-assistant/architecture.md` - 架构设计
+- `feishu-learning-assistant/setup-guide.md` - 配置指南
+- `feishu-learning-assistant/examples/scenarios.md` - 使用场景
+
 ### 类型 2：配置优化项目
 优化现有工具的配置和使用，如：
 - **MCP 服务器配置最佳实践**文档
@@ -163,10 +196,16 @@
 ## 常见问题
 
 ### Q: 没有项目想法怎么办？
-**A**: 可以从改进现有工具开始，或者解决自己遇到的实际问题。
+**A**: 可以直接选择**飞书学习助手**项目（`feishu-learning-assistant/`），它提供了完整的配置文档和代码示例。
 
 ### Q: 项目难度如何把握？
 **A**: 建议从小项目开始，确保能够完成。可以后续迭代扩展。
 
 ### Q: 必须开源吗？
 **A**: 不必须，但开源有助于获得反馈和建立个人品牌。
+
+### Q: 飞书学习助手项目有什么价值？
+**A**:
+- 完整的 AI 工具集成实践
+- WSL + Windows 混合环境配置经验
+- 可作为其他 AI 集成项目的参考模板

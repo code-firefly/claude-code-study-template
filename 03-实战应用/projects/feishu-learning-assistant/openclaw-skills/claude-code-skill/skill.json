@@ -1,0 +1,15 @@
+{
+  "name": "claude-code",
+  "version": "1.0.0",
+  "description": "调用 Claude Code CLI 执行学习命令",
+  "main": "index.js",
+  "author": "claude-code-study",
+  "license": "MIT",
+  "dependencies": {
+    "util": "^0.12.5"
+  },
+  "openclaw": {
+    "type": "skill",
+    "category": "integration"
+  }
+}

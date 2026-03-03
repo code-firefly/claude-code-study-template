@@ -42,7 +42,13 @@ personal-notes/
 # === OpenClaw ClawHub ===
 # 错误安装到 Windows 的 skill 文件（应在 WSL ~/.openclaw/skills/）
 .clawhub/
-skills/
+/skills/
+
+# === 项目自带 skills（系统文件，必须追踪）===
+!.claude/skills/
+!.claude/skills/**/*.ts
+!.claude/skills/**/*.json
+!.claude/skills/**/*.md
 
 # === 模板文件例外（系统文件，必须追踪）===
 !.templates/

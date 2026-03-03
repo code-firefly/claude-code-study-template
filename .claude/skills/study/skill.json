@@ -81,6 +81,23 @@
       "permissions": {
         "allow": ["Read"]
       }
+    },
+    {
+      "name": "sync",
+      "description": "同步上游更新到本地学习计划",
+      "handler": "commands/sync.ts",
+      "arguments": [
+        {
+          "name": "mode",
+          "description": "同步模式：check（仅检查）/ auto（执行同步）",
+          "required": false,
+          "type": "string",
+          "default": "check"
+        }
+      ],
+      "permissions": {
+        "allow": ["Read", "AskUserQuestion", "Bash"]
+      }
     }
   ],
   "config": {
