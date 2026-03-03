@@ -7,12 +7,14 @@
  *   /study update <模块名>    - 更新进度
  *   /study complete <模块名>  - 完成学习
  *   /study status [模块名]    - 查看状态
+ *   /study sync [mode]        - 同步上游更新
  */
 
 import { handle as handleStart } from './commands/start.js';
 import { handle as handleUpdate } from './commands/update.js';
 import { handle as handleComplete } from './commands/complete.js';
 import { handle as handleStatus } from './commands/status.js';
+import { handle as handleSync } from './commands/sync.js';
 
 // 导出所有类型
 export * from './lib/types.js';
@@ -23,9 +25,10 @@ export * from './lib/progress-parser.js';
 export * from './lib/progress-calculator.js';
 export * from './lib/file-updater.js';
 export * from './lib/ui-formatter.js';
+export * from './lib/update-checker.js';
 
 // 导出命令处理器
-export { handleStart, handleUpdate, handleComplete, handleStatus };
+export { handleStart, handleUpdate, handleComplete, handleStatus, handleSync };
 
 // Skill 元数据
 export const skillMeta = {
@@ -47,8 +50,10 @@ export async function main(command: string, args: any, context: any): Promise<st
       return await handleComplete(args, context);
     case 'status':
       return await handleStatus(args, context);
+    case 'sync':
+      return await handleSync(args, context);
     default:
-      return `未知命令: ${command}\n可用命令: start, update, complete, status\n`;
+      return `未知命令: ${command}\n可用命令: start, update, complete, status, sync\n`;
   }
 }
 

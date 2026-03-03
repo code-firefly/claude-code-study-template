@@ -7,7 +7,9 @@
 ## 🐛 待解决的问题
 
 <!-- 发现问题时记录在这里 -->
-（暂无）
+
+
+
 ---
 
 ## 💡 想要的新功能
@@ -67,6 +69,27 @@
 - **问题 2**: 书签内容可能影响会话上下文
   - **说明**: 这是设计特性，书签系统用于支持分支探索
   - **优化**: 通过行为规范确保探索内容保持简洁（要点列表）
+
+### 2026-03-03: 学习计划同步功能
+
+- **问题**: 团队成员学习时，如果 upstream 更新了课程，本地不会自动更新学习计划
+- **解决**: 实现智能提醒 + 手动触发的同步方案
+- **实现内容**:
+  - `/study sync` 命令：检查上游更新（check 模式）
+  - `/study sync auto` 命令：执行同步脚本（auto 模式）
+  - 非阻塞更新提醒：学习命令（start/update/complete）执行时自动检测并提醒
+  - 复用现有 `scripts/sync.sh` 脚本，零重写
+  - 个人数据保护：通过 `.gitignore` 保护学习进度
+- **新增文件**:
+  - `.claude/skills/study/lib/update-checker.ts` - 更新检查库
+  - `.claude/skills/study/commands/sync.ts` - 同步命令处理器
+- **修改文件**:
+  - `.claude/skills/study/index.ts` - 添加 sync 命令路由
+  - `.claude/skills/study/skill.json` - 添加 sync 命令配置
+  - `.claude/skills/study/commands/start.ts` - 集成非阻塞更新检查
+  - `.claude/skills/study/commands/update.ts` - 集成非阻塞更新检查
+  - `.claude/skills/study/commands/complete.ts` - 集成非阻塞更新检查
+  - `CLAUDE.md` - 添加同步工作流程文档
 
 ---
 
