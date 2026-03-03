@@ -39,6 +39,11 @@ personal-notes/
 *.bak
 .backups/
 
+# === OpenClaw ClawHub ===
+# 错误安装到 Windows 的 skill 文件（应在 WSL ~/.openclaw/skills/）
+.clawhub/
+skills/
+
 # === 模板文件例外（系统文件，必须追踪）===
 !.templates/
 !.templates/**/*.md
