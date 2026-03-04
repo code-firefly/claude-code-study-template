@@ -49,9 +49,18 @@ function getCurrentVersion(rootDir: string): string {
 
 /**
  * 获取上游版本（通过 git）
+ * 首先会 fetch upstream 以获取最新版本信息
  */
 function getUpstreamVersion(rootDir: string): string {
   try {
+    // 先 fetch upstream 获取最新版本信息
+    execSync('git fetch upstream', {
+      cwd: rootDir,
+      encoding: 'utf-8',
+      stdio: ['pipe', 'pipe', 'pipe'], // 抑制输出
+      timeout: 5000 // 5秒超时，避免网络问题导致长时间阻塞
+    });
+
     const changelogContent = execSync('git show upstream/main:CHANGELOG.md', {
       cwd: rootDir,
       encoding: 'utf-8',
