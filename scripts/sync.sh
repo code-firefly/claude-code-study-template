@@ -82,17 +82,17 @@ check_clean_state() {
 }
 
 get_current_version() {
-    # 从 CHANGELOG.md 提取最新版本
+    # 从 CHANGELOG.md 提取最新版本（跳过 [Unreleased]）
     if [ -f "CHANGELOG.md" ]; then
-        grep -m1 "^## \[" CHANGELOG.md | sed 's/^## \[\([^]]*\)\].*/\1/'
+        grep "^## \[" CHANGELOG.md | grep -v "Unreleased" | head -1 | sed 's/^## \[\([^]]*\)\].*/\1/'
     else
         echo "unknown"
     fi
 }
 
 get_upstream_version() {
-    # 从 upstream 的 CHANGELOG.md 提取最新版本
-    git show upstream/main:CHANGELOG.md 2>/dev/null | grep -m1 "^## \[" | sed 's/^## \[\([^]]*\)\].*/\1/' || echo "unknown"
+    # 从 upstream 的 CHANGELOG.md 提取最新版本（跳过 [Unreleased]）
+    git show upstream/main:CHANGELOG.md 2>/dev/null | grep "^## \[" | grep -v "Unreleased" | head -1 | sed 's/^## \[\([^]]*\)\].*/\1/' || echo "unknown"
 }
 
 # =============================================================================
