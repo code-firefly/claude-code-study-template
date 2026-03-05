@@ -14,25 +14,30 @@ desktop.ini
 *.log
 
 # === 个人学习数据 ===
-# 进度追踪（个人数据，由模板初始化）
-PROGRESS.md
-KNOWLEDGE_CACHE.md
-LEARNING_BOOKMARKS.md
+  # 进度追踪（个人数据，由模板初始化）
+  # 💡 提示：取消以下注释可将个人数据同步到 GitHub（多设备备份）
+  # PROGRESS.md
+  # KNOWLEDGE_CACHE.md
+  # LEARNING_BOOKMARKS.md
 
-# 模块个人数据（由模板初始化）
-**/checklist.md
-**/notes.md
+  # 模块个人数据（由模板初始化）
+  # 💡 新用户可以取消注释来同步模块学习进度
+  # **/checklist.md
+  # **/notes.md
 
-# 知识缓存目录（个人本地缓存）
-**/knowledge/
+  # 知识缓存目录（个人本地缓存）
+  # 💡 知识缓存文件较大，按需取消注释同步
+  # **/knowledge/
 
-# Claude 个人配置
-.claude/LEARNING_BOOKMARKS.md
-.claude/KNOWLEDGE_CACHE.md
-.claude/settings.local.json
+  # Claude 个人配置
+  # 💡 本地配置文件，按需取消注释同步
+  # .claude/LEARNING_BOOKMARKS.md
+  # .claude/KNOWLEDGE_CACHE.md
+  # .claude/settings.local.json
 
-# 个人学习笔记（不分享给团队）
-personal-notes/
+  # 个人学习笔记（不分享给团队）
+  # 💡 个人学习笔记，按需取消注释同步
+  # personal-notes/
 
 # 备份文件
 *.backup
