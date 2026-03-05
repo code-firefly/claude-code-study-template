@@ -23,7 +23,7 @@ cd "$REPO_ROOT"
 TODAY=$(date +%Y-%m-%d)
 
 # 模板仓库 URL
-TEMPLATE_REPO="https://github.com/GreadXu/claude-code-study"
+TEMPLATE_REPO="https://github.com/code-firefly/claude-code-study-template"
 TEMP_DIR=".temp-update"
 
 # 个人数据文件（不会被覆盖）
