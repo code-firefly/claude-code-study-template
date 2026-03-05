@@ -73,6 +73,18 @@
 
 ---
 
+## ⚙️ 系统要求
+
+| 要求 | 说明 |
+|------|------|
+| **操作系统** | Windows 10/11 |
+| **Shell 环境** | Git Bash（Git for Windows 自带）或 WSL |
+| **必需软件** | Git、Claude Code CLI |
+
+> **注意**：本项目目前仅支持 Windows 环境。脚本使用 bash 编写，需要 Git Bash 或 WSL 运行。
+
+---
+
 ## 适用场景
 
 | 场景 | 说明 |
