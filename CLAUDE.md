@@ -129,7 +129,8 @@ ai-learning-template/
    - 显示提示：`"注意：'{旧名称}' 已更名为 '{新名称}'，正在使用新名称继续..."`
    - 使用新名称继续后续流程
 
-1. 查找模块路径（从以下映射）：
+1. 查找模块路径（从以下映射，优先匹配新名称）：
+   # 新名称（v2.0）
    - `ai-tools-fundamentals` → `01-基础入门/ai-tools-fundamentals`
    - `mcp-protocol` → `01-基础入门/mcp-protocol`
    - `agent-configuration` → `02-进阶探索/agent-configuration`
@@ -139,6 +140,16 @@ ai-learning-template/
    - `config-management` → `03-实战应用/config-management`
    - `spec-driven-dev` → `03-实战应用/spec-driven-dev`
    - `practical-projects` → `03-实战应用/practical-projects`
+   # 旧名称（v1.x 向后兼容，迁移前使用）
+   - `claude-code-core` → `01-基础入门/claude-code-core`
+   - `mcp-basics` → `01-基础入门/mcp-basics`
+   - `agent-sdk` → `02-进阶探索/agent-sdk`
+   - `mcp-advanced` → `02-进阶探索/mcp-advanced`
+   - `openclaw-ecosystem` → `02-进阶探索/openclaw-ecosystem`
+   - `everything-claude-code` → `02-进阶探索/everything-claude-code`
+   - `cc-switch` → `03-实战应用/cc-switch`
+   - `spec-kit` → `03-实战应用/spec-kit`
+   - `projects` → `03-实战应用/projects`
 
 2. 验证模块是否已开始学习（检查 checklist.md 的学习模式选择）
    - 如果已开始，显示警告信息
