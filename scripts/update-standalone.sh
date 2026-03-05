@@ -78,11 +78,12 @@ is_clone_mode() {
     return 0  # Clone 模式（无 upstream）
 }
 
-# 从 CHANGELOG.md 提取版本号
+# 从 CHANGELOG.md 提取版本号（跳过 Unreleased）
 extract_version() {
     local changelog=$1
     if [ -f "$changelog" ]; then
-        grep -m1 "^## \[" "$changelog" | sed 's/## \[\(.*\)\].*/\1/'
+        # 跳过 [Unreleased]，提取第一个实际版本号
+        grep "^## \[" "$changelog" | grep -v "Unreleased" | head -1 | sed 's/## \[\(.*\)\].*/\1/'
     else
         echo "unknown"
     fi
@@ -120,6 +121,10 @@ compare_versions() {
     for i in "${!v1_parts[@]}"; do
         local n1=${v1_parts[i]:-0}
         local n2=${v2_parts[i]:-0}
+        # 确保是数字才比较
+        if ! [[ "$n1" =~ ^[0-9]+$ ]] || ! [[ "$n2" =~ ^[0-9]+$ ]]; then
+            continue
+        fi
         if [ "$n1" -gt "$n2" ]; then
             echo "newer"
             return
