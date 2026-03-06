@@ -33,14 +33,15 @@
 
 | 模块 | 状态 | 缓存日期 | 资料来源 |
 |------|------|----------|----------|
-| claude-code-core | 未缓存 | - | anthropics/claude-code |
-| mcp-basics | 未缓存 | - | anthropic-ai/sdk-python |
-| agent-sdk | 未缓存 | - | anthropic-ai/sdk-python |
-| mcp-advanced | 未缓存 | - | anthropic-ai/sdk-python |
-| everything-claude-code | 未缓存 | - | - |
-| cc-switch | 未缓存 | - | - |
-| spec-kit | 未缓存 | - | anthropics/spec-kit |
-| projects | 未缓存 | - | - |
+| ai-tools-fundamentals | ✅ 已缓存 | 2026-03-06 | anthropics/claude-code |
+| mcp-protocol | 未缓存 | - | anthropic-ai/sdk-python |
+| agent-configuration | 未缓存 | - | anthropic-ai/sdk-python |
+| mcp-advanced-config | 未缓存 | - | anthropic-ai/sdk-python |
+| ai-orchestration | 未缓存 | - | OpenClaw/openclaw |
+| ai-resources-research | 未缓存 | - | - |
+| config-management | 未缓存 | - | - |
+| spec-driven-dev | 未缓存 | - | anthropics/spec-kit |
+| practical-projects | 未缓存 | - | - |
 
 ---
 
@@ -49,6 +50,7 @@
 | 日期 | 模块 | 操作 | 备注 |
 |------|------|------|------|
 | 2026-03-06 | - | 初始化 | 从模板创建个人缓存追踪文件 |
+| 2026-03-06 | ai-tools-fundamentals | 初始化缓存 | 创建基础知识缓存结构 |
 
 ---
 

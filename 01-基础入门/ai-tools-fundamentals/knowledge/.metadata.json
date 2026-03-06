@@ -1,0 +1,17 @@
+{
+  "module": "ai-tools-fundamentals",
+  "cache_date": "2026-03-06",
+  "source": [
+    "https://github.com/anthropics/claude-code",
+    "https://claude.ai/claude-code",
+    "https://docs.anthropic.com/"
+  ],
+  "status": "initialized",
+  "files": [
+    "README.md",
+    "overview.md",
+    "concepts.md",
+    "guides.md"
+  ],
+  "notes": "基础缓存已创建。部分在线资源无法获取，已使用模块 README 和官方文档摘要创建缓存结构。"
+}
