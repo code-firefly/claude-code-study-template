@@ -1,0 +1,10 @@
+{
+  "version": "1.0.0",
+  "autoCheck": {
+    "enabled": true,
+    "intervalHours": 24,
+    "lastCheck": null,
+    "cachedUpstreamVersion": null
+  },
+  "syncMode": "full"
+}

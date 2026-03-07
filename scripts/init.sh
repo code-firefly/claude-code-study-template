@@ -223,6 +223,115 @@ verify_gitignore() {
     fi
 }
 
+# 新增：交互式启用 .gitignore 保护
+configure_gitignore_protection() {
+    print_header "步骤 4/6: 配置 .gitignore 保护 "
+    echo ""
+    print_info "Fork 用户通常希望保护个人学习数据，避免与上游仓库冲突"
+    print_info "选择保护级别："
+    echo ""
+    echo "  1. 🛡️  启用全部保护（推荐）"
+    echo "     - 所有个人数据文件不会被 Git 追踪"
+    echo "     - 避免同步时被上游覆盖"
+    echo "     - 适合 Fork 用户的自定义学习内容"
+    echo ""
+    echo "  2. 📊 仅保护进度文件"
+    echo "     - 仅保护 PROGRESS.md、书签、缓存"
+    echo "     - 模块清单和笔记可以被追踪"
+    echo "     - 适合希望分享模块进度的用户"
+    echo ""
+    echo "  3. ⚙️  跳过（手动配置）"
+    echo "     - 保持当前 .gitignore 配置"
+    echo "     - 手动管理个人数据保护"
+    echo ""
+    read -p "请选择保护级别 (1/2/3) [默认: 1]: " protection_choice
+    protection_choice=${protection_choice:-1}
+    echo ""
+
+    case $protection_choice in
+        1)
+            enable_full_gitignore_protection
+            ;;
+        2)
+            enable_progress_only_protection
+            ;;
+        3)
+            print_info "跳过 .gitignore 保护配置"
+            print_info "您可以在 .gitignore 中手动调整配置"
+            ;;
+        *)
+            print_warning "无效选择，跳过保护配置"
+            ;;
+    esac
+    echo ""
+}
+
+# 启用全部保护
+enable_full_gitignore_protection() {
+    print_info "启用全部 .gitignore 保护..."
+
+    local gitignore_file=".gitignore"
+    local temp_file="${gitignore_file}.tmp"
+
+    # 使用 sed 取消注释个人数据部分
+    sed -e 's/^  # PROGRESS\.md$/  PROGRESS.md/' \
+        -e 's/^  # KNOWLEDGE_CACHE\.md$/  KNOWLEDGE_CACHE.md/' \
+        -e 's/^  # LEARNING_BOOKMARKS\.md$/  LEARNING_BOOKMARKS.md/' \
+        -e 's/^  # \*\*\/checklist\.md$/  **\/checklist.md/' \
+        -e 's/^  # \*\*\/notes\.md$/  **\/notes.md/' \
+        -e 's/^  # \*\*\/knowledge\/$/  **\/knowledge\//' \
+        -e 's/^  # \.claude\/LEARNING_BOOKMARKS\.md$/  .claude\/LEARNING_BOOKMARKS.md/' \
+        -e 's/^  # \.claude\/KNOWLEDGE_CACHE\.md$/  .claude\/KNOWLEDGE_CACHE.md/' \
+        -e 's/^  # \.claude\/settings\.local\.json$/  .claude\/settings.local.json/' \
+        -e 's/^  # personal-notes\/$/  personal-notes\//' \
+        "$gitignore_file" > "$temp_file"
+
+    if [ $? -eq 0 ]; then
+        mv "$temp_file" "$gitignore_file"
+        print_success "已启用全部 .gitignore 保护"
+        print_info "以下文件将不会被 Git 追踪："
+        echo "  - PROGRESS.md"
+        echo "  - LEARNING_BOOKMARKS.md"
+        echo "  - KNOWLEDGE_CACHE.md"
+        echo "  - **/checklist.md"
+        echo "  - **/notes.md"
+        echo "  - **/knowledge/"
+        echo "  - personal-notes/"
+    else
+        rm -f "$temp_file"
+        print_error "更新 .gitignore 失败"
+    fi
+}
+
+# 仅保护进度文件
+enable_progress_only_protection() {
+    print_info "启用进度文件 .gitignore 保护..."
+
+    local gitignore_file=".gitignore"
+    local temp_file="${gitignore_file}.tmp"
+
+    # 仅取消注释进度文件部分
+    sed -e 's/^  # PROGRESS\.md$/  PROGRESS.md/' \
+        -e 's/^  # KNOWLEDGE_CACHE\.md$/  KNOWLEDGE_CACHE.md/' \
+        -e 's/^  # LEARNING_BOOKMARKS\.md$/  LEARNING_BOOKMARKS.md/' \
+        -e 's/^  # \.claude\/LEARNING_BOOKMARKS\.md$/  .claude\/LEARNING_BOOKMARKS.md/' \
+        -e 's/^  # \.claude\/KNOWLEDGE_CACHE\.md$/  .claude\/KNOWLEDGE_CACHE.md/' \
+        "$gitignore_file" > "$temp_file"
+
+    if [ $? -eq 0 ]; then
+        mv "$temp_file" "$gitignore_file"
+        print_success "已启用进度文件 .gitignore 保护"
+        print_info "以下文件将不会被 Git 追踪："
+        echo "  - PROGRESS.md"
+        echo "  - LEARNING_BOOKMARKS.md"
+        echo "  - KNOWLEDGE_CACHE.md"
+        print_warning "模块清单 (checklist.md) 和笔记 (notes.md) 仍会被追踪"
+    else
+        rm -f "$temp_file"
+        print_error "更新 .gitignore 失败"
+    fi
+}
+
 # =============================================================================
 # 主流程
 # =============================================================================
@@ -265,28 +374,31 @@ main() {
     echo ""
 
     # 步骤 1：检查模板文件
-    print_header "步骤 1/5: 检查模板文件 "
+    print_header "步骤 1/6: 检查模板文件 "
     check_templates
     echo ""
 
     # 步骤 2：创建进度文件
-    print_header "步骤 2/5: 创建进度文件 "
+    print_header "步骤 2/6: 创建进度文件 "
     init_progress_file
     echo ""
 
     # 步骤 3：创建书签和缓存文件
-    print_header "步骤 3/5: 创建书签和缓存文件 "
+    print_header "步骤 3/6: 创建书签和缓存文件 "
     init_cache_file
     init_bookmarks_file
     echo ""
 
     # 步骤 4：初始化模块文件
-    print_header "步骤 4/5: 初始化模块文件 "
+    print_header "步骤 4/6: 初始化模块文件 "
     init_module_files
     echo ""
 
-    # 步骤 5：配置 upstream 和验证
-    print_header "步骤 5/5: 配置与验证 "
+    # 步骤 5：配置 .gitignore 保护
+    configure_gitignore_protection
+
+    # 步骤 6：配置 upstream 和验证
+    print_header "步骤 6/6: 配置与验证 "
     configure_upstream
     verify_gitignore
     echo ""

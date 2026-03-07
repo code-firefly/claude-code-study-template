@@ -50,6 +50,49 @@ print_info() {
 }
 
 # =============================================================================
+# 自定义模块检测
+# =============================================================================
+
+detect_custom_modules() {
+    local custom_modules=()
+
+    # 扫描所有模块目录查找 .custom 标记
+    for module_dir in */*/*; do
+        if [ -d "$module_dir" ] && [ -f "$module_dir/.custom" ]; then
+            custom_modules+=("$module_dir")
+        fi
+    done
+
+    echo "${custom_modules[@]}"
+}
+
+show_custom_module_warning() {
+    local custom_modules=($1)
+
+    if [ ${#custom_modules[@]} -gt 0 ]; then
+        print_warning "发现 ${#custom_modules[@]} 个自定义模块："
+        echo ""
+        for module in "${custom_modules[@]}"; do
+            local custom_file="$module/.custom"
+            local custom_date=$(grep "自定义日期" "$custom_file" 2>/dev/null | sed 's/.*：//' || echo "未知")
+            local custom_files=$(grep "自定义文件" "$custom_file" 2>/dev/null | sed 's/.*：//' || echo "未知")
+            echo "  📝 $module"
+            echo "     自定义日期: $custom_date"
+            echo "     自定义文件: $custom_files"
+        done
+        echo ""
+        print_warning "这些模块在同步时将被跳过，以避免覆盖您的自定义内容"
+        echo ""
+        read -p "是否继续同步？(y/N) " -n 1 -r
+        echo
+        if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+            print_info "同步已取消"
+            exit 0
+        fi
+    fi
+}
+
+# =============================================================================
 # 检查函数
 # =============================================================================
 
@@ -251,30 +294,36 @@ main() {
     echo ""
 
     # 步骤 1：检查 upstream
-    print_header "步骤 1/5: 检查 upstream 配置 "
+    print_header "步骤 1/6: 检查 upstream 配置 "
     check_upstream
     echo ""
 
     # 步骤 2：检查工作目录状态
-    print_header "步骤 2/5: 检查工作目录状态 "
+    print_header "步骤 2/6: 检查工作目录状态 "
     check_clean_state
     echo ""
 
     # 步骤 3：备份个人数据
     if $do_backup; then
-        print_header "步骤 3/5: 备份个人数据 "
+        print_header "步骤 3/6: 备份个人数据 "
         backup_personal_data
         echo ""
     fi
 
-    # 步骤 4：获取并显示更新
-    print_header "步骤 4/5: 获取上游更新 "
+    # 步骤 4：检测自定义模块
+    print_header "步骤 4/6: 检测自定义模块 "
+    local custom_modules=$(detect_custom_modules)
+    show_custom_module_warning "$custom_modules"
+    echo ""
+
+    # 步骤 5：获取并显示更新
+    print_header "步骤 5/6: 获取上游更新 "
     fetch_upstream
     show_changelog
     echo ""
 
-    # 步骤 5：合并更新
-    print_header "步骤 5/5: 合并上游更新 "
+    # 步骤 6：合并更新
+    print_header "步骤 6/6: 合并上游更新 "
     read -p "是否继续合并更新？(Y/n) " -n 1 -r
     echo
     if [[ ! $REPLY =~ ^[Nn]$ ]]; then
