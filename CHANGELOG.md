@@ -18,6 +18,31 @@
 
 ## [Unreleased]
 
+### 变更 (Changed)
+- 🔄 **架构重构**：将学习系统从 Command Skills 重构为 Prompt Skills
+  - 删除 study Command Skill（TypeScript，环境不兼容）
+  - 新增 5 个 Prompt Skills（learning-*），支持真正的自然语言触发
+  - 所有功能保持不变，用户交互更加自然直观
+  - 非阻塞更新提醒已迁移到 learning-manager 和 learning-progress
+
+### 删除 (Removed)
+- 🗑️ `.claude/skills/study/` - 移除 TypeScript Command Skill（环境不兼容）
+- 🗑️ `SYNC_TEST.md` - 删除过时的测试文档（命令式语法）
+- 🗑️ `IMPLEMENTATION_STATUS.md` - 删除已废弃的实施状态文档
+
+### 新增 (Added)
+- ✨ **Prompt Skills**：5 个自然语言触发的学习管理技能
+  - `learning-progress` - 查看学习状态、更新进度
+  - `learning-manager` - 开始学习、完成学习、重置模块
+  - `learning-bookmark` - 创建书签、继续探索、完成书签
+  - `learning-cache` - 初始化缓存、刷新缓存、查看缓存
+  - `learning-sync` - 检查更新、同步学习计划、模块管理
+
+### 文档 (Docs)
+- 📝 learning-sync/SKILL.md：移除 `/study` 命令引用
+- 📝 learning-manager/SKILL.md：添加非阻塞更新提醒
+- 📝 learning-progress/SKILL.md：添加非阻塞更新提醒
+
 ### 计划中
 - 添加更多学习模块模板
 - 改进进度可视化
