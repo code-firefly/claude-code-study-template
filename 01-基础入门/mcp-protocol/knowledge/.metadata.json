@@ -1,0 +1,16 @@
+{
+  "module": "mcp-protocol",
+  "cacheDate": "2026-03-07",
+  "sources": [
+    "https://github.com/modelcontextprotocol/typescript-sdk",
+    "https://github.com/modelcontextprotocol/python-sdk",
+    "https://spec.modelcontextprotocol.io/"
+  ],
+  "files": [
+    "README.md",
+    "overview.md",
+    "concepts.md",
+    "guides.md"
+  ],
+  "status": "complete"
+}
