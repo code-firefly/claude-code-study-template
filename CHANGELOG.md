@@ -32,6 +32,23 @@
 
 ---
 
+## [2.1.1] - 2026-03-08
+
+### [Docs] 文档更新
+
+- 📚 **新增 Agent Skills 平台指南**
+  - 创建 `docs/AGENT_SKILLS_PLATFORMS_GUIDE.md`
+  - 包含 10+ 主流 Agent Skills 平台详细评估
+  - 对比社区活跃度、使用方便性、AI 兼容性
+  - 快速访问链接汇总
+  - OpenClaw 生态系统介绍
+
+- 📝 **README.md 更新**
+  - "完整指南" 部分新增 Agent Skills 平台指南条目
+  - "学习资源" 部分新增醒目的提示框链接
+
+---
+
 ## [Unreleased]
 
 ### 变更 (Changed)

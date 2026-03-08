@@ -206,6 +206,7 @@
 | [学习工作流程](./CLAUDE.md) | 完整的学习命令说明（包含书签和缓存系统） |
 | [模板使用指南](./TEMPLATE_GUIDE.md) | Fork + upstream 工作流，自定义学习计划 |
 | [版本迁移指南](./MIGRATION.md) | 版本升级和数据迁移步骤 |
+| [Agent Skills 平台指南](./docs/AGENT_SKILLS_PLATFORMS_GUIDE.md) | 全网 Agent Skills 发现和分享平台评估 |
 | [工具改进指南](./.claude/IMPROVEMENT_GUIDE.md) | 如何改进这个学习工具本身 |
 | [.claude/IDEAS.md](./.claude/IDEAS.md) | 学习工具改进想法记录 |
 
@@ -353,6 +354,8 @@ ai-learning-template/
 - [OpenClaw](https://github.com/OpenClaw/openclaw) - 本地优先 AI 助手平台
 - [cc-switch](https://github.com/farion1231/cc-switch) - CC 配置管理工具
 - [spec-kit](https://github.com/github/spec-kit) - GitHub 规范工具包
+
+> 💡 **Agent Skills 平台指南**: 如果你想了解全网 Agent Skills 发现和分享平台，查看 [Agent Skills 平台指南](./docs/AGENT_SKILLS_PLATFORMS_GUIDE.md)，包含 10+ 主流平台详细评估。
 
 ---
 
