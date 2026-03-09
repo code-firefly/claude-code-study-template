@@ -1,0 +1,31 @@
+{
+  "module": "ai-orchestration",
+  "cache_date": "2026-03-09",
+  "source_urls": [
+    "https://github.com/OpenClaw/openclaw",
+    "https://docs.openclaw.ai"
+  ],
+  "files": [
+    "README.md",
+    "overview.md",
+    "concepts.md",
+    "guides.md",
+    ".metadata.json"
+  ],
+  "version": "1.0",
+  "description": "OpenClaw AI 编排平台知识缓存 - 包含项目概述、核心概念和使用指南",
+  "topics_covered": [
+    "OpenClaw 项目愿景和定位",
+    "Gateway 架构设计",
+    "Agent 工作空间管理",
+    "Channels 渠道系统",
+    "会话管理机制",
+    "心跳系统",
+    "媒体处理",
+    "安全配置",
+    "插件系统",
+    "MCP 集成"
+  ],
+  "language": "zh-CN",
+  "last_updated": "2026-03-09T00:00:00Z"
+}

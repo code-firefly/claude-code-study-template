@@ -10,9 +10,9 @@
 |------|----------|----------|--------|
 | ai-tools-fundamentals | ❌ 无缓存 | - | 0 |
 | mcp-protocol | ✅ 已缓存 | 2026-03-07 | 5 |
-| agent-configuration | ❌ 无缓存 | - | 0 |
+| agent-configuration | ✅ 已缓存 | 2026-03-09 | 5 |
 | mcp-advanced-config | ❌ 无缓存 | - | 0 |
-| ai-orchestration | ❌ 无缓存 | - | 0 |
+| ai-orchestration | ✅ 已缓存 | 2026-03-09 | 5 |
 | ai-resources-research | ❌ 无缓存 | - | 0 |
 | config-management | ❌ 无缓存 | - | 0 |
 | spec-driven-dev | ❌ 无缓存 | - | 0 |
@@ -25,6 +25,8 @@
 | 日期 | 模块 | 操作 |
 |------|------|------|
 | 2026-03-07 | mcp-protocol | 初始化知识缓存（overview, concepts, guides） |
+| 2026-03-09 | agent-configuration | 初始化知识缓存（overview, concepts, guides） |
+| 2026-03-09 | ai-orchestration | 初始化知识缓存（overview, concepts, guides） |
 
 ---
 

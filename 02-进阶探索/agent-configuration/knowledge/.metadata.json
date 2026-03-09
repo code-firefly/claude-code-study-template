@@ -1,0 +1,15 @@
+{
+  "module": "agent-configuration",
+  "cache_date": "2026-03-09",
+  "source_urls": [
+    "https://github.com/anthropics/anthropic-sdk-typescript",
+    "https://docs.anthropic.com/en/docs/build-with-claude/agent-sdk"
+  ],
+  "files": [
+    "overview.md",
+    "concepts.md",
+    "guides.md"
+  ],
+  "version": "1.0",
+  "description": "Agent 配置与使用模块知识缓存，包含 SDK 概述、核心概念和配置指南"
+}

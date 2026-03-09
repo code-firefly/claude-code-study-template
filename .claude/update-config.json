@@ -3,8 +3,8 @@
   "autoCheck": {
     "enabled": true,
     "intervalHours": 24,
-    "lastCheck": null,
-    "cachedUpstreamVersion": null
+    "lastCheck": "2026-03-09T02:13:09Z",
+    "cachedUpstreamVersion": "v2.1.0"
   },
   "syncMode": "core"
 }
